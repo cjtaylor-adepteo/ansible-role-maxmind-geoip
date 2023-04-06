@@ -5,10 +5,16 @@
     state: latest
     update_cache: yes
 
-  # community.general.apk:
-  #   name: tar
-  #   state: latest
-  #   update_cache: yes
+  community.general.apk:
+    name: tar
+    state: latest
+    update_cache: yes
+
+  community.general.apk:
+    name: unzip
+    state: latest
+    update_cache: yes
+
 
 # - name: Gets GEO IP Update tarball
 #   get_url:
@@ -21,16 +27,20 @@
     state: directory
     mode: '0755'
 
-- name: Unarchive GEO IP Tarball
-  unarchive:
+- name: Download GEO IP Tarball
+  ansible.builtin.get_url:
     # src: /srv/{{ maxmind_update_directory_alpine }}.tar.gz
-    src: "{{ maxmind_update_package_alpine }}"
-    dest: /srv
-    remote_src: yes
+    url: "{{ maxmind_update_package_alpine }}"
+    dest: /tmp/tarball.tgz
+
+- name: Unarchive GEO IP Tarball
+  ansible.builtin.shell:
+    chdir: /tmp
+    cmd: "tar xvfz /tmp/tarball.tgz"
 
 - name: Copy geoipupdate to /usr/bin
   ansible.builtin.copy:
-    src: /srv/{{ maxmind_update_directory_alpine }}/geoipupdate
+    src: /tmp/{{ maxmind_update_directory_alpine }}/geoipupdate
     dest: /usr/bin
     mode: '0755'
     remote_src: yes
