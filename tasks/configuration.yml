@@ -11,8 +11,19 @@
 - name: Install cron for automatic GeoIP database update
   template:
     src: 'geoipupdate.cron.j2'
+    dest: '/etc/crontabs/geoipupdate'
+    owner: root
+    group: root
+    mode: 0640
+  notify: Restart cron
+  when: ansible_distribution == 'Alpine'
+
+- name: Install cron for automatic GeoIP database update
+  template:
+    src: 'geoipupdate.cron.j2'
     dest: '/etc/cron.d/geoipupdate'
     owner: root
     group: root
     mode: 0640
   notify: Restart cron
+  when: ansible_distribution != 'Alpine'

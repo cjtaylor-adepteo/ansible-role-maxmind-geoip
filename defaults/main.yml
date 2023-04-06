@@ -4,6 +4,8 @@
 # Debian
 maxmind_update_package_debian: 'http://ftp.nl.debian.org/debian/pool/contrib/g/geoipupdate/geoipupdate_2.5.0-1~bpo9+1_amd64.deb'
 
+maxmind_update_package_alpine: 'https://github.com/maxmind/geoipupdate/releases/download/v4.9.0/geoipupdate_4.9.0_linux_amd64.tar.gz'
+maxmind_update_directory_alpine: 'geoipupdate_4.9.0_linux_amd64'
 # Rhel
 maxmind_update_package_rhel: 'GeoIP-update'
 
