@@ -17,7 +17,7 @@ None
 
     ---
     - hosts: all
-      sudo: yes
+      become: yes
 
       roles:
          - { role: jgeusebroek.maxmind-geoip, tags: ["maxmind-geoip"] }
@@ -26,16 +26,12 @@ None
 
 Below are configurable variables with their default values.
 
-	# Debian
-	maxmind_update_package_debian:
-		'http://ftp.nl.debian.org/debian/pool/contrib/g/geoipupdate/geoipupdate_2.5.0-1~bpo9+1_amd64.deb'
-
 	# Credentials (these defaults are for the free databases)
-	maxmind_update_userid: '999999'
+	maxmind_update_account_id: '999999'
 	maxmind_update_licensekey: '000000000000'
 
 	# These are the free databases, should you have a subscription change these values
-	maxmind_update_product_ids:
+	maxmind_update_edition_ids:
 	  - GeoLite2-City
 	  - GeoLite2-Country
 

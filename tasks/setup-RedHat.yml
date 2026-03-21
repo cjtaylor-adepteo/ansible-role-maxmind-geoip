@@ -1,5 +1,11 @@
 ---
+- name: Ensure EPEL is enabled | RedHat
+  ansible.builtin.package:
+    name: epel-release
+    state: present
+  when: ansible_distribution != 'Fedora'
+
 - name: Install Maxmind GeoIP tools | RedHat
-  package:
-    name: '{{ maxmind_update_package_rhel }}'
+  ansible.builtin.package:
+    name: "{{ maxmind_update_packages }}"
     state: present

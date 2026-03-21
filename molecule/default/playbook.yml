@@ -23,4 +23,4 @@
       delay: 2
 
   roles:
-    - role: jgeusebroek.maxmind-geoip
+    - role: ansible-role-maxmind-geoip

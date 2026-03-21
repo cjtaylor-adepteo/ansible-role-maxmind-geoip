@@ -10,7 +10,7 @@ maxmind_update_directory_alpine: 'geoipupdate_{{ alpineVersion }}_linux_amd64'
 maxmind_update_package_rhel: 'GeoIP-update'
 
 # Credentials
-maxmind_update_userid: '999999'
+maxmind_update_account_id: '{{ maxmind_update_userid | default("999999") }}'
 maxmind_update_licensekey: '000000000000'
 
 # Update tool
@@ -24,6 +24,10 @@ maxmind_update_configuration: '/etc/GeoIP.conf'
 # * 506 - GeoLite Legacy Country
 # * 517 - GeoLite Legacy ASN
 # * 533 - GeoLite Legacy City
+maxmind_update_edition_ids: "{{ maxmind_update_product_ids | default(['GeoLite2-City', 'GeoLite2-Country']) }}"
+
+# Backward compatibility
+maxmind_update_userid: '999999'
 maxmind_update_product_ids:
   - GeoLite2-City
   - GeoLite2-Country
